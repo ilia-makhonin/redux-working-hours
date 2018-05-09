@@ -1,6 +1,6 @@
 import React from 'react';
 
-function reducer(state = [], action) {
+export default function addMusic(state = [], action) {
     switch (action.type) {
         case 'ADD_PROPERTY': {
             return [
@@ -11,12 +11,3 @@ function reducer(state = [], action) {
         default: return state;
     }
 }
-
-function newReducer(state = [], action) {
-    switch (action.type) {
-        case 'ADD_PROPERTY': { return [...state, action.trackName]; }
-        default: return state;
-    }
-}
-
-export  { reducer, newReducer };

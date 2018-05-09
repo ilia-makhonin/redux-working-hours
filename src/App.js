@@ -2,16 +2,22 @@ import React, { Component } from 'react';
 import { createStore } from 'redux';
 import './App.css';
 
-import { reducer, newReducer } from "./reducer";
+import reducers from './reducers/reducer';
 
 //------------------- Redux store -------------------
 
-let store = createStore(reducer);
+let music = {
+    addMusic: [],
+    musicSearch: []
+};
 
 for (let i = 1; i < 10; i++) {
     let trackName = 10 + i;
-    store.dispatch({ type: 'ADD_PROPERTY', trackName });
+    music.addMusic.push(<p className="item_playlist">{trackName}</p>);
+    music.musicSearch.push(trackName);
 }
+
+let store = createStore(reducers, music);
 
 //------------------- React app -------------------
 
@@ -20,20 +26,28 @@ class App extends Component {
         super(props);
 
         this.addSound = this.addSound.bind(this);
+        this.searchSound = this.addSound.bind(this);
     }
 
     componentWillMount() {
         let subscribe = store.subscribe(() => this.forceUpdate());
+        console.log(store.getState())
     }
 
     addSound() {
-        let trackName = this.refs.sound.value;
+        let trackName = this.refs.sound;
 
-        if (trackName === '') {
+        if (trackName.value === '') {
             return false;
         }
 
-        store.dispatch({ type: 'ADD_PROPERTY', trackName });
+        store.dispatch({ type: 'ADD_PROPERTY', trackName: trackName.value });
+
+        trackName.value = '';
+    }
+
+    searchSound() {
+        store.dispatch({ type: 'SEARCH_SOUND', search: 12 })
     }
 
     render() {
@@ -41,7 +55,7 @@ class App extends Component {
             <div className="wrapper">
                 <div className="playlist">
                     {
-                        store.getState().map((item, count) => {
+                        store.getState().addMusic.map((item, count) => {
                             return (
                                 <div key={count}>
                                     {item}
