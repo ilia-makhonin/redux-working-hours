@@ -1,42 +1,16 @@
-body {
-    background: black;
-}
-
-.counter {
-    width: 250px;
-    color: white;
-    margin: 200px auto 0 auto;
-}
-
-.count {
-    display: block;
-    font-size: 38px;
-    text-align: center;
+.playlist {
+    width: 90%;
+    background: olivedrab;
+    padding-top: 20px;
     margin: 0 auto;
 }
 
-.buttons {
-    width: inherit;
-    margin: 10px auto;
-    display: flex;
-    justify-content: space-around;
-}
-
-.increment, .reset, .decrement {
-    width: 50px;
-    height: 50px;
-    font-size: 30px;
-    background: purple;
-    border: none;
-    outline: none;
-}
-
-.counter > input {
-    width: 100%;
-    background: transparent;
-    font-size: 30px;
-    color: white;
+.item_playlist {
+    width: 80%;
+    background: olive;
+    font-size: 18px;
     text-align: center;
-    border: none;
-    outline: none;
+    border-radius: 8px;
+    padding: 6px 0;
+    margin: 0 auto 5px;
 }
